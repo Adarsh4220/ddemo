@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>⚡ ADARSH KHOT Portfolio</title>
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+/* ------------------ ROOT THEME ------------------ */
+:root{
+  --bg:#05070b;
+  --panel:#0b1220;
+  --ink:#e6f7ff;
+  --muted:#92a7b4;
+  --primary:#00f5ff;
+  --accent:#7aff6b;
+  --ring: rgba(0,245,255,0.35);
+  --card:rgba(255,255,255,0.06);
+  --border:rgba(255,255,255,0.12);
+  --shadow:0 10px 30px rgba(0,0,0,.45);
+}
+[data-theme="light"]{
+  --bg:#f6fbff; --panel:#ffffff; --ink:#08111a;
+  --muted:#476176; --card:rgba(8,17,26,0.04); --border:rgba(8,17,26,0.08);
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Inter,sans-serif;
+  background:radial-gradient(1200px 600px at 80% -10%, rgba(0,245,255,0.15), transparent),
+             radial-gradient(900px 500px at -10% 20%, rgba(122,255,107,0.12), transparent),
+             var(--bg);
+  color:var(--ink);
+}
+.container{max-width:1180px;margin:auto;padding:0 20px}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+.mono{font-family:"JetBrains Mono", monospace}
+
+/* ------------------ BACKGROUND PCB ------------------ */
+.pcb-bg{position:fixed;inset:0;z-index:-1;opacity:.4;pointer-events:none}
+.pcb-bg svg{width:100%;height:100%}
+.pcb-bg path{stroke:var(--primary);stroke-width:2;fill:none;opacity:.5;stroke-dasharray:6 10;animation:dash 14s linear infinite}
+.pcb-bg circle{fill:var(--accent)}
+@keyframes dash{to{stroke-dashoffset:-2000}}
+
+/* ------------------ NAVBAR ------------------ */
+.nav{
+  display:flex;justify-content:space-between;align-items:center;
+  height:64px;position:sticky;top:0;
+}
+.nav::after{
+  content:"";position:absolute;left:0;right:0;bottom:0;
+  height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent)
+}
+.nav ul{display:flex;gap:20px;list-style:none}
+.logo-led{
+  width:12px;height:12px;border-radius:4px;background:var(--accent);
+  box-shadow:0 0 8px var(--accent),0 0 18px var(--accent);
+}
+.btn{
+  padding:8px 14px;border-radius:10px;border:1px solid var(--border);
+  background:var(--card);cursor:pointer;transition:.2s;
+}
+.btn:hover{transform:translateY(-2px);box-shadow:0 6px 16px var(--shadow)}
+.btn.primary{background:linear-gradient(90deg,var(--primary),var(--accent));color:#001014;border:0}
+
+/* ------------------ HERO ------------------ */
+.hero{padding:70px 0}
+.hero-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:30px;align-items:center}
+.badge{
+  display:inline-block;padding:6px 10px;border:1px solid var(--border);
+  background:var(--card);border-radius:20px;font-size:12px;color:var(--muted);
+}
+.hero h1{
+  font-size:clamp(30px,5vw,55px);margin:16px 0;line-height:1.1;position:relative;
+}
+.glow{text-shadow:0 0 20px rgba(0,245,255,.6);color:var(--primary)}
+.line{
+  position:absolute;left:0;bottom:-10px;height:2px;width:180px;
+  background:linear-gradient(90deg,var(--primary),transparent)
+}
+.lead{color:var(--muted);font-size:18px;margin:14px 0}
+
+/* Oscilloscope block */
+.hero-card{
+  border:1px solid var(--border);border-radius:18px;padding:16px;
+  background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));
+  box-shadow:var(--shadow);
+}
+.oscilloscope{
+  position:relative;border:1px solid var(--border);
+  background:#02131a;height:240px;border-radius:14px;
+}
+.oscilloscope::after{
+  content:"CH1";position:absolute;top:8px;left:10px;
+  color:#66f3ff;font-size:12px;opacity:.7;
+}
+#scope{width:100%;height:100%}
+.chip-id{
+  margin-top:10px;display:flex;justify-content:space-between;
+  color:var(--muted);font-family:"JetBrains Mono", monospace;
+}
+.chip-id .pin{
+  padding:4px 8px;border:1px dashed var(--border);border-radius:8px;
+}
+
+/* ------------------ SECTIONS ------------------ */
+section{padding:50px 0}
+h2{font-size:28px;margin-bottom:10px}
+.sub{color:var(--muted);margin-bottom:16px}
+
+/* Skill Chips */
+.chip{
+  border:1px solid var(--border);background:var(--card);
+  padding:8px 12px;border-radius:999px;font-size:13px;margin:5px;display:inline-flex;
+}
+
+/* ------------------ PROJECTS ------------------ */
+.projects{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.card{
+  border:1px solid var(--border);border-radius:16px;
+  background:var(--panel);position:relative;overflow:hidden;
+}
+.card:hover{box-shadow:0 0 0 4px var(--ring)}
+.card .cover{
+  aspect-ratio:16/9;
+  background:radial-gradient(700px 240px at 60% -20%,rgba(0,245,255,.15),transparent);
+  display:flex;justify-content:center;align-items:center;
+}
+.card .body{padding:14px}
+.card .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+
+/* ------------------ TIMELINE ------------------ */
+.timeline{display:grid;gap:14px}
+.item{
+  border:1px solid var(--border);
+  background:var(--panel);
+  border-radius:14px;padding:14px;
+}
+
+/* ------------------ FOOTER ------------------ */
+footer{border-top:1px solid var(--border);padding:30px 0;text-align:center;color:var(--muted)}
+
+/* ------------------ RESPONSIVE ------------------ */
+@media(max-width:900px){
+  .hero-grid{grid-template-columns:1fr}
+  .projects{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:600px){
+  .projects{grid-template-columns:1fr}
+  .nav ul{display:none}
+}
+</style>
+</head>
+
+<body>
+
+<!-- PCB Background -->
+<div class="pcb-bg">
+<svg viewBox="0 0 1200 800">
+  <path d="M20 80 H300 V200 H500" />
+  <path d="M1180 200 H900 V400 H700" />
+  <path d="M100 680 H420 V520 H760" />
+  <path d="M1080 600 H820 V300 H600" />
+  <circle cx="500" cy="200" r="5" />
+  <circle cx="700" cy="400" r="5" />
+  <circle cx="760" cy="520" r="5" />
+  <circle cx="600" cy="300" r="5" />
+</svg>
+</div>
+
+<!-- NAV -->
+<!-- NAV -->
+<nav class="nav container">
+  <div class="brand">
+    <span class="logo-led"></span> <strong>ADARSH SURESH KHOT</strong>
+  </div>
+
+  <ul>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+
+  <div style="display:flex; gap:10px;">
+    <a class="btn" href="https://github.com/Adarsh4220" target="_blank">GitHub</a>
+    <a class="btn" href="linkedin.com/in/adarsh-khot-56918526b" target="_blank">LinkedIn</a>
+    <button id="themeToggle" class="btn">🌓</button>
+  </div>
+</nav>
+
+
+<!-- HERO -->
+<header class="hero container">
+  <div class="hero-grid">
+    <div>
+      <span class="badge">Electronics • IoT • Web Dev</span>
+      <h1>Hi, I'm <span class="glow">ADARSH SURESH KHOT</span><span class="line"></span></h1>
+      <p class="lead">I design circuits, write firmware, and build full-stack apps. Currently exploring embedded ML and edge telemetry.</p>
+
+      <div class="cta">
+        <button class="btn primary">View Projects</button>
+        <a class="btn" href="mailto:adarshkhot2003@gmail.com">Hire Me</a>
+      </div>
+    </div>
+
+    <!-- Oscilloscope -->
+    <div class="hero-card">
+      <div class="oscilloscope"><canvas id="scope"></canvas></div>
+      <div class="chip-id">
+        <span class="pin">VCC</span>
+        <span>ATmega • ESP32 • STM32</span>
+        <span class="pin">GND</span>
+      </div>
+    </div>
+
+  </div>
+</header>
+
+<!-- SKILLS -->
+<section id="skills" class="container">
+  <h2>Skills</h2>
+  <p class="sub">From breadboard to browser.</p>
+  <div id="skillsChips"></div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="container">
+  <h2>Featured Projects</h2>
+  <div class="projects" id="projectGrid"></div>
+</section>
+
+<!-- EXPERIENCE -->
+
+
+<!-- CONTACT -->
+<!-- CONTACT -->
+<section id="contact" class="container">
+  <h2>Contact</h2>
+  <p class="sub">Feel free to reach out for collaborations or opportunities!</p>
+
+  <div class="item" style="padding:20px; border:1px solid var(--border); border-radius:16px; background:var(--panel);">
+    <p>📧 Email: <a href="mailto:adarshkhot2003@gmail.com"target="_blank">adarshkhot2003.com</a></p>
+    <p>📞 Phone: <a href="tel:+917090818787">+91 7090818787</a></p>
+    <p>💼 LinkedIn: <a href="linkedin.com/in/adarsh-khot-56918526b" target="_blank">linkedin.com/in/adarsh-khot-56918526b</a></p>
+    <p>🐙 GitHub: <a href="https://github.com/Adarsh4220" target="_blank">https://github.com/Adarsh4220</a></p>
+  </div>
+</section>
+
+
+<script>
+/* -----------------------------------
+   JS DATA
+----------------------------------- */
+const skillData = [
+  "Arduino","STM32",
+  "IoT","Raspberry Pi","C","C++","Python","Java",
+  "HTML/CSS/JS",
+];
+
+const projectData = [
+  {
+    title:"Accident prevention system using eye blink sensor",
+    date:"2025-01-10",
+    desc:"A compact and reliable accident-prevention system that detects driver drowsiness through real-time eye-blink monitoring and triggers immediate safety alerts using Arduino-based control.",
+    tags:["IoT","Driver Drowsiness Detection","Arduino Microcontroller","Accident Prevention System"],
+    image:"https://www.engineersgarage.com/wp-content/uploads/2024/10/The-circuit.jpg"
+  },
+  {
+    title:"Design and Analysis of 8-Bit Multiplier for Low Power VLSI Application.",
+    date:"2025-06-01",
+    desc:"Design and analysis of an 8-bit Additive Multiply Module (AMM) focused on low-power VLSI, comparing its power and area efficiency with Wallace and Dadda multipliers using Verilog RTL and Cadence/Xilinx tools.",
+    tags:["VLSI Design","Low-Power ArchitecturePWA","Verilog HDL","Multiplier Optimization"],
+    image:"https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80"
+  }
+];
+
+const timelineData = [
+  {role:"Electronics Intern", org:"LabWorks", when:"2025", notes:"Designed mixed-signal PCBs."},
+  {role:"Freelancer", org:"Self-employed", when:"2023–Present", notes:"Built dashboards & IoT apps."}
+];
+
+/* -----------------------------------
+   RENDER SKILLS
+----------------------------------- */
+const skillBox = document.getElementById("skillsChips");
+skillData.forEach(s=>{
+  let chip=document.createElement("span");
+  chip.className="chip";
+  chip.textContent=s;
+  skillBox.appendChild(chip);
+});
+
+/* -----------------------------------
+   RENDER PROJECTS
+----------------------------------- */
+const grid=document.getElementById("projectGrid");
+projectData.forEach(p=>{
+  let card=document.createElement("div");
+  card.className="card";
+  card.innerHTML=`
+    <div class="cover"><img src="${p.image}" /></div>
+    <div class="body">
+      <h3>${p.title}</h3>
+      <p class="sub">${p.desc}</p>
+      <div class="tags">${p.tags.map(t=>`<span class='chip'>${t}</span>`).join('')}</div>
+    </div>`;
+  grid.appendChild(card);
+});
+
+/* -----------------------------------
+   TIMELINE
+----------------------------------- */
+const tl=document.getElementById("timeline");
+timelineData.forEach(x=>{
+  let it=document.createElement("div");
+  it.className="item";
+  it.innerHTML=`<strong>${x.role}</strong> · ${x.org}<div class="when">${x.when}</div><div>${x.notes}</div>`;
+  tl.appendChild(it);
+});
+
+/* -----------------------------------
+   YEAR
+----------------------------------- */
+document.getElementById("year").textContent=new Date().getFullYear();
+
+/* -----------------------------------
+   THEME TOGGLE
+----------------------------------- */
+document.getElementById("themeToggle").onclick=()=>{
+  const now=document.documentElement.getAttribute("data-theme")==="dark"?"light":"dark";
+  document.documentElement.setAttribute("data-theme",now);
+};
+
+/* -----------------------------------
+   OSCILLOSCOPE ANIMATION
+----------------------------------- */
+(function(){
+  const c=document.getElementById("scope"); if(!c) return;
+  const ctx=c.getContext("2d");
+  let W,H,t=0; function resize(){
+    W=c.clientWidth;H=c.clientHeight;c.width=W;c.height=H;
+  }
+  window.addEventListener("resize",resize);resize();
+
+  function draw(){
+    ctx.fillStyle="#02131a";ctx.fillRect(0,0,W,H);
+    ctx.strokeStyle="rgba(0,245,255,0.2)";ctx.lineWidth=1;
+    for(let x=0;x<W;x+=20){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke();}
+    for(let y=0;y<H;y+=20){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();}
+    ctx.strokeStyle="#00f5ff";ctx.beginPath();ctx.lineWidth=2;
+    for(let x=0;x<W;x++){
+      const y=H/2+Math.sin((x+t)*0.03)*40+Math.sin((x+t)*0.12)*10;
+      x===0?ctx.moveTo(x,y):ctx.lineTo(x,y);
+    }
+    ctx.stroke();t+=2;requestAnimationFrame(draw);
+  }
+  draw();
+})();
+</script>
+
+</body>
+</html>
